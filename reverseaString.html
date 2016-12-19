@@ -1,0 +1,39 @@
+<!DOCTYPE>
+<html>
+  <head>
+    <script>
+      function clearFiled(){
+        document.getElementById('inputVal').value = "";
+        document.getElementById('userInput').innerHTML = "";
+        document.getElementById('output').innerHTML = "";
+      }
+
+      function reverseString(){
+        var string = document.getElementById('inputVal').value,
+            arrayString = [],
+            arrayString = string.split(""),
+            stringlength = arrayString.length-1,
+            arrarReverse = [];
+        document.getElementById('userInput').innerHTML = string;
+        for(var i=stringlength; i>=0; i--){
+          arrarReverse.push(arrayString[i]);
+          var outputArray = arrarReverse.join("");
+        }
+        document.getElementById('output').innerHTML = outputArray;
+      }
+
+    </script>
+  </head>
+  <body>
+    <div>
+      <input id="inputVal" type= "text" maxlength="15" />
+      <button onclick="reverseString()">ReverseString</button>
+      <button onclick="clearFiled()">Clear</button>
+
+      <p id="userInput"></p>
+      <p id="output"></p>
+    </div>
+  </body>
+
+
+</html>

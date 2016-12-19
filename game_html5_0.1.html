@@ -1,0 +1,56 @@
+<html>
+<canvas height="600" width="800" id="blackCanvas"></canvas>
+	<script>
+		var canvas;
+		var canvasContext;
+		var ball_x = 10;
+		var ball_y = 10;
+		var ballspeed_x = 5;
+		var farward = true;
+		window.onload = function(){
+			console.log('windowloaded');
+			canvas = document.getElementById('blackCanvas');
+			canvasContext = canvas.getContext('2d');
+			var nOfFrames = 30;
+			setInterval(function(){
+				balldesign();
+				ballmovement();
+			}, 1000/nOfFrames);
+		}
+
+		var balldesign = function(){
+			canvasContext.fillStyle = "yellow";
+			canvasContext.fillRect(0,0,canvas.width,canvas.height);
+			canvasContext.fillStyle = "black";
+			canvasContext.fillRect(0,canvas.height/2,10, 80);
+			canvasContext.fillStyle = "black";
+			canvasContext.fillRect(ball_x,canvas.height/2,10,10);
+			dottedLine();
+		}
+
+		var ballmovement = function(){
+			if (farward == true && ball_x <= canvas.width){
+				ball_x = ball_x + ballspeed_x;
+				if (ball_x > canvas.width){
+					farward = false;
+				}
+			}
+			else if(farward == false && ball_x >= 0){
+				ball_x = ball_x - ballspeed_x;
+				if (ball_x < 0){
+					farward = true;
+				}
+			}
+		}
+
+		var dottedLine = function(){
+			canvasContext.setLineDash([5, 10]);
+			canvasContext.beginPath();
+			canvasContext.moveTo(canvas.width/2,canvas.height-10);
+			canvasContext.lineTo(canvas.width/2, 10);
+			canvasContext.stroke();
+			canvasContext.fillStyle = "white";
+		}
+
+	</script>
+</html>

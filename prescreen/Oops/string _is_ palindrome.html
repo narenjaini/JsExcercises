@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset=utf-8 />
+<title>PALINDROME or not</title>
+
+<script>
+  function numberPalindrome(){
+    var input = document.getElementById("userInput").value.toLowerCase().replace(/[^a-zA-Z]+/g,'');//takes the input, Changes into lower case and removes  all non-alphanumeric characters
+    input = input + "";
+    var temp = input.split("").reverse().join("");
+
+    if(input == temp){
+        document.getElementById("result").innerHTML = "Yes!" + "&nbsp;'" + input + "'&nbsp;" + "is a PALINDROME"
+    }else{
+        document.getElementById("result").innerHTML = "Sorry!" + "&nbsp;'" + input + "'&nbsp;" + "is NOT a PALINDROME"
+    }
+  }
+</script>
+</head>
+
+<body>
+  <input  id="userInput" type="text"/>
+  <button id="palin" onclick="numberPalindrome()">Palindrome</button>
+  <p>The result is:&nbsp;</p> <span id="result"></span>
+
+</body>
+</html>

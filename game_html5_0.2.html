@@ -1,0 +1,107 @@
+<html>
+<canvas height="600" width="800" id="blackCanvas"></canvas>
+	<script>
+		var canvas,
+			 canvasContext,
+			 ball_x = 10,
+			 ball_y = 10,
+			 ballspeed_x = 5,
+			 ballspeed_y = 2,
+			 paddleLeft_y = 275,
+			 paddleRight_y = 275,
+			 paddleThickness = 10,
+			 paddleHeight = 80;
+
+		function CalMousePosition(evt){
+			// rect is a DOMRect object with eight properties: left, top, right, bottom, x, y, width, height
+			var rect = canvas.getBoundingClientRect();
+			var root = document.documentElement;
+			var mouse_X = evt.clientX - rect.left - root.scrollLeft;
+			//console.log("evt.clientX:" + evt.clientX  + "rect.left:" + rect.left + "root.scrollLeft:" + root.scrollLeft);
+			var mouse_y = evt.clientY - rect.top - root.scrollTop;
+			//console.log("evt.clientY:"+ evt.clientY  + "rect.top:" + rect.top + "root.scrollTop:" + root.scrollTop)
+			return{
+				x:mouse_X,
+				y:mouse_y
+			};
+		}
+
+
+		window.onload = function(){
+			console.log('windowloaded');
+			canvas = document.getElementById('blackCanvas');
+			canvasContext = canvas.getContext('2d');
+			var nOfFrames = 30;
+			setInterval(function(){
+				balldesign();
+				ballmovement();
+			}, 1000/nOfFrames);
+
+			canvas.addEventListener('mousemove', function(evt){
+				var mousePosition = CalMousePosition(evt);
+				if(mousePosition.x <= 400){
+					paddleLeft_y = mousePosition.y - (paddleHeight/2);
+				}else{
+					paddleRight_y = mousePosition.y - (paddleHeight/2);
+				}
+			});
+		}
+
+		function ballReset(){
+			ball_x = canvas.width/2;
+			ball_y = canvas.height/2;
+		}
+
+		var balldesign = function(){
+			canvasContext.fillStyle = "yellow";
+			canvasContext.fillRect(0,0,canvas.width,canvas.height);
+
+			canvasContext.fillStyle = "black";
+			canvasContext.fillRect(0,paddleLeft_y, paddleThickness, paddleHeight);
+
+			canvasContext.fillStyle = "black";
+			canvasContext.fillRect(canvas.width - paddleThickness, paddleRight_y, paddleThickness, paddleHeight);
+
+			canvasContext.fillStyle = "black";
+			canvasContext.beginPath();
+			canvasContext.arc(ball_x, ball_y, 10, 0, Math.PI*2, true);
+			canvasContext.fill();
+			dottedLine();
+		}
+
+		var ballmovement = function(){
+			ball_x = ball_x + ballspeed_x;
+			ball_y = ball_y + ballspeed_y;
+			if (ball_x <= paddleThickness){
+				if((ball_y > paddleLeft_y) && (ball_y < paddleLeft_y+paddleHeight)){
+					ballspeed_x = -ballspeed_x;
+				}else if(ball_x <= 0){
+					ballReset();
+				}
+			}
+			if (ball_x >= (canvas.width-paddleThickness)){
+				if((ball_y > paddleRight_y) && (ball_y < paddleRight_y+paddleHeight)){
+				 ballspeed_x = -ballspeed_x;
+			 }else if (ball_x >= canvas.width){
+				 ballReset();
+			 }
+			}
+			if (ball_y <= 0){
+				ballspeed_y = -ballspeed_y;
+			}
+			if (ball_y >= canvas.height){
+				ballspeed_y = -ballspeed_y;
+			}
+		}
+
+		var dottedLine = function(){
+			canvasContext.setLineDash([5, 10]);
+			canvasContext.beginPath();
+			canvasContext.moveTo(canvas.width/2,canvas.height-10);
+			canvasContext.lineTo(canvas.width/2, 10);
+			canvasContext.stroke();
+			canvasContext.fillStyle = "white";
+		}
+
+	</script>
+</html>

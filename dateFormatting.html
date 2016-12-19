@@ -1,0 +1,34 @@
+<!-- Expected Output :
+mm-dd-yyyy, mm/dd/yyyy or dd-mm-yyyy, dd/mm/yyyy  -->
+
+
+<!DOCTYPE>
+<html>
+  <head>
+    <script>
+      var dateFormatting = function(){
+          var date = new Date(),
+              todayDate = date.getDate(),
+              day = date.getDay(),
+              year = date.getFullYear(),
+              currentMonthnumb = date.getMonth() + 1,
+              month = ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"],
+              currentMonth = month[date.getMonth()];
+
+          console.log(day + currentMonth);
+          document.getElementById("todayDate").innerHTML = ( "mm/dd/yyyy:&nbsp;" + currentMonthnumb + "/" + todayDate + "/" + year +"</br>" +  "mm-dd-yyyy:&nbsp;" + currentMonthnumb + "-" + todayDate + "-" + year);
+        }
+    </script>
+  </head>
+  <body>
+    <div>
+      <p id="todayDate"></p>
+      <p id="day"></p>
+      <p id="month"></p>
+      <p id="year"></p>
+
+      <button onclick="dateFormatting()">FormatDate</button>
+    </div>
+  </body>
+
+</html>

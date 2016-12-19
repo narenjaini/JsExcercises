@@ -1,0 +1,84 @@
+<html>
+	<head>
+		<style>
+			body{
+				margin: 0;
+				padding: 0;
+			}
+			svg{
+				width: 100%;
+				height: 100%;
+				background-color: #C0C0C0;
+			}
+
+		</style>
+	</head>
+		<svg>
+			 <circle id="ball" cx="5" cy="5" r="10" stroke="black" stroke-width="4" fill="black" />
+		</svg>
+<!-- <canvas id="blackCanvas"></canvas> -->
+
+	<script>
+
+		window.onload = function(){
+			var nOfFrames = 50,
+					ballx_position = 20,
+					bally_position = document.documentElement.clientHeight - 20,
+          fnRight = "",
+				 	fnUp = "";
+
+					ballDesign(ballx_position,bally_position);
+
+		function ballDesign(ballx_position, bally_position){
+			var ball =  document.getElementById('ball'),
+					cx = ball.setAttribute("cx" , ballx_position),
+					cy = ball.setAttribute('cy', bally_position),
+					r = ball.setAttribute('r', 10);
+		}
+
+		function moveRight(){
+			// ball moving functionality by updating the position at regular intervals
+			// ballx_position+= 3;
+			// ballDesign(ballx_position,bally_position);
+				bally_position;
+        clearInterval(fnUp);
+		    fnRight = setInterval(function(){
+   				 ballx_position+= 2;
+   				 ballDesign(ballx_position,bally_position);
+   				 }, 1000/nOfFrames);
+		}
+
+		function moveUp(){
+			// ball moving functionality by updating the position at regular intervals
+			// bally_position-= 3;
+			// ballDesign(ballx_position,bally_position);
+			ballx_position;
+      clearInterval(fnRight);
+			fnUp = setInterval(function(){
+				 bally_position-= 2;
+				 ballDesign(ballx_position,bally_position);
+				 }, 1000/nOfFrames);
+		}
+
+		function ballReset(){
+			ballx_position = 20;
+			bally_position = document.documentElement.clientHeight - 20;
+		}
+
+		document.body.onkeypress = function(e){
+			//keyCode 119 --> up |||||||| 100 --> right
+			console.log(e.keyCode);
+	    if(e.keyCode == 100){
+	        //your code
+					moveRight();
+					console.log("right");
+	    }
+			if(e.keyCode == 119){
+	        //your code
+					moveUp();
+					console.log("up");
+	    }
+		}
+}
+	</script>
+</html>

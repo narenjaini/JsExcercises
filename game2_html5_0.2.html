@@ -1,0 +1,72 @@
+<html>
+	<head>
+		<style>
+
+			body{
+				margin: 0;
+				padding: 0;
+			}
+			#bg{
+				width: 100%;
+				height: 100%;
+				background-color: #C0C0C0;
+			}
+			#ball{
+				width: 20px;
+				height: 20px;
+				border-radius: 20px;
+				background-color: #000000;
+				position: absolute;
+			}
+
+		</style>
+	</head>
+		<div id="bg">
+			 <div id="ball" style="left:5; bottom:5;"></div>
+		</div>
+
+	<script>
+
+		window.onload = function(){
+			var nOfFrames = 100,
+					left = document.getElementById('ball').style.left,
+					bottom = document.getElementById('ball').style.bottom,
+					ballx_position = parseInt(left, 10),
+					bally_position = parseInt(bottom, 10),
+					fnRight = "",
+				 	fnUp = "";
+					console.log(ballx_position);
+
+		function moveRight(){
+			 clearInterval(fnUp);
+			 fnRight = setInterval(function(){
+				 ballx_position+= 2;
+				 document.getElementById('ball').style.left = ballx_position;
+				 }, 1000/nOfFrames);
+		 }
+
+		function moveUp(){
+			clearInterval(fnRight);
+			fnUp = setInterval(function(){
+				 bally_position+= 2;
+				 document.getElementById('ball').style.bottom = bally_position;
+				 }, 1000/nOfFrames);
+		}
+
+		function ballReset(){
+			ballx_position = 20;
+			bally_position = document.documentElement.clientHeight - 20;
+		}
+
+		document.body.onkeypress = function(e){
+			//keyCode 119 --> up |||||||| 100 --> right
+	    if(e.keyCode == 100){
+					moveRight();
+	    }
+			if(e.keyCode == 119){
+					moveUp();
+	    }
+		}
+}
+	</script>
+</html>

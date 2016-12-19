@@ -1,0 +1,54 @@
+<!DOCTYPE>
+<html>
+  <head>
+    <script>
+        var currentd = function(){
+          var dateTime = new Date(),
+              dateOnly = dateTime.getDate(),
+              dayOnly = dateTime.getDay(),
+              weekDays = ['Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday'],
+              hours = dateTime.getHours(),
+              ampm = hours>=12 ? 'PM' : 'AM',
+              hours = hours >= 12 ? hours-12 : hours,
+              minutes = dateTime.getMinutes(),
+              seconds = dateTime.getSeconds(),
+              time = hours + " " + ":&nbsp;" + minutes + ":&nbsp;" + seconds;
+
+          document.getElementById('dateTime').innerHTML = "Today Date and Time:  " + "" + dateTime ;
+          document.getElementById('dateOnly').innerHTML = "Today Date:  " + "" + dateOnly ;
+          document.getElementById('timeNow').innerHTML = "Today Date:  " + "" + time + "&nbsp" + ampm;
+
+          console.log(weekDays.length);
+          findDay(dayOnly, weekDays);
+        };
+
+        function findDay(dayOnly, weekDays){
+          var day = weekDays[dayOnly];
+          //
+          // for(var i=0; i<weekDays.length; i++){
+          //     if(i == dayOnly){
+          //       day = weekDays[i];
+          //        break;
+          //    }
+          //  }
+          //
+          document.getElementById('dayOnly').innerHTML = "Today is:" + " " + day;
+        };
+    </script>
+  </head>
+  <body>
+    // To show currentTime with ampm 
+    <div>
+      <p id="dateTime"> </p>
+      <p id="dateOnly"> </p>
+      <p id="dayOnly"> </p>
+      <p id="timeNow"> </p>
+
+      <button onclick = "currentd()">CurrentTime</button>
+    </div>
+
+    // To print current window content
+    <div><button onclick = "window.print()">Print</button></div>
+
+  </body>
+</html>

@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset=utf-8 />
+<title>Js Excercise-reverse a number</title>
+
+<script>
+  // function Check(e) {
+  //   var keyCode = (e.keyCode ? e.keyCode : e.which);
+  //   if (keyCode > 47 && keyCode < 58) {
+  //       e.preventDefault();
+  //   }
+  // }
+  function numberPalindrome(){
+    var input = document.getElementById("userInput").value.toLowerCase().replace(/[^a-zA-Z0-9]+/g,'').replace(/[0-9]/g, '');;//takes the input, Changes into lower case and removes  all non-alphanumeric characters
+    input = input + "";
+    var temp = input.split("").reverse().join("");
+    console.log(temp);
+
+    if(input == temp){
+      document.getElementById("result").innerHTML = "Yes! the given input is a PALINDROME"
+    }else{
+        document.getElementById("result").innerHTML = "Sorry! the given input is NOT a PALINDROME"
+    }
+  }
+</script>
+
+</head>
+
+<body>
+  <input  id="userInput" type="text"/>
+  <button id="palin" onclick="numberPalindrome()">Palindrome</button>
+  <p>The result is:&nbsp;</p> <span id="result"></span>
+
+</body>
+</html>

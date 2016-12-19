@@ -1,0 +1,59 @@
+ <!DOCTYPE>
+<html>
+  <head>
+    <script>
+      function clearFiled(){
+        document.getElementById('inputVal').value = "";
+        document.getElementById('userInput').innerHTML = "";
+        document.getElementById('output').innerHTML = "";
+      }
+
+      function rotateString(){
+        var string = document.getElementById('inputVal').value;
+        
+        setInterval(function(){
+          string = string[string.length-1] + string.substring(0, string.length-1);
+          document.getElementById('output').innerHTML = string;
+        },100);
+
+      }
+
+    </script>
+  </head>
+  <body>
+    <div>
+      <input id="inputVal" type= "text" maxlength="15" />
+      <button onclick="rotateString()">RotateString</button>
+      <button onclick="clearFiled()">Clear</button>
+
+      <p id="userInput"></p>
+      <p id="output"></p>
+    </div>
+  </body>
+
+
+</html>
+<!--
+<!DOCTYPE html>
+<html>
+<head>
+<title>JavaScript basic animation</title>
+<script type="text/javascript">
+function animate_string()
+{
+debugger;    var element = document.getElementById("target");
+    var textNode = element.childNodes[0]; // assuming no other children
+    var test = textNode.data;
+
+setInterval(function ()
+{
+ test = test[test.length - 1] + test.substring(0, test.length - 1);
+  textNode.data = test;
+
+}, 100);
+}
+</script>
+</head> <body onload="animate_string()"
+<pre id="target">w3resource </pre>
+</body>
+</html>

@@ -1,0 +1,51 @@
+<!-- Alternate method:
+
+function reverse_a_number(n)
+{
+	n = n + "";
+	return n.split("").reverse().join("");
+}
+
+Convert a number to a string :
+
+Code : -> n = n + "";
+Note : There are different ways to convert number to string :
+
+String literal -> str = "" + num + "";
+String constructor -> str = String(num);
+toString -> str = num.toString();
+String Literal simple -> str = "" + num;
+ -->
+
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset=utf-8 />
+<title>Js Excercise-reverse a number</title>
+
+<script>
+  var reverseNumber = function(){
+    var input =  document.getElementById("userInput").value,
+        inputArray = input.split(""),
+        outputArray = [],
+        inputMaxIndex = inputArray.length-1;
+
+    for(var i=inputMaxIndex; i>=0; i--){
+       outputArray.push(inputArray[i]);
+    }
+
+    var output = outputArray.join("");
+
+    document.getElementById("result").innerHTML = output;
+  }
+</script>
+</head>
+<body>
+
+  <input  id="userInput" type="number" />
+
+  <button id="reverse" onclick="reverseNumber()">Reverse the Number</button>
+  <p>The result is:&nbsp;</p> <span id="result"></span>
+
+</body>
+</html>

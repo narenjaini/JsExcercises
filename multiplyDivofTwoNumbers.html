@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset=utf-8 />
+<title>Js Excercise</title>
+<script>
+
+  var multiply = function(a,b){
+    var a = document.getElementById("first").value,
+        b = document.getElementById("sec").value;
+
+    var result = a*b;
+    document.getElementById("result").innerHTML = result;
+  }
+
+  var Divide = function(a,b){
+    var a = document.getElementById("first").value,
+        b = document.getElementById("sec").value;
+
+    var result = a/b;
+    document.getElementById("result").innerHTML = result;
+  }
+
+
+</script>
+</head>
+<body>
+  <input id="first" type="text" maxlength="10" />
+  <input id="sec" type="text" maxlength="10" />
+
+  <button id="mul" onclick="multiply()">Multiply</button>&nbsp;<button id="div" onclick="Divide()">Divide</button>
+
+  <p>The result is:&nbsp;<span id="result"></span></p>
+
+</body>
+</html>

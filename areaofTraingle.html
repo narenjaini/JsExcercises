@@ -1,0 +1,36 @@
+<!DOCTYPE>
+<html>
+  <head>
+    <script>
+      var areaOfTraingle = function(a, b, c){
+        this.a = a;
+        this.b = b;
+        this.c = c;
+
+        var  sp = (a+b+c)/2, //semiperimeter
+              val_a = sp-a,
+              val_b = sp-b,
+              val_c = sp-c,
+            areaofTg = Math.sqrt(sp*(val_a*val_b*val_c));
+
+        document.getElementById("copy").innerHTML = "Area of Traingle with sides(" + "&nbsp;"+ a +",&nbsp;"+ b +",&nbsp;"+  c + "&nbsp;" + ") is:&nbsp;" ;
+        return areaofTg;
+      }
+
+      function area(){
+        var c = areaOfTraingle(5, 6, 7);
+        document.getElementById("areaval").innerHTML =  c + "&nbsp;SqUnits";
+      }
+    </script>
+  </head>
+  <body>
+    <div>
+      <p id="copy"></p>
+      <p id="areaval"></p>
+
+      <button onclick="area()">areaOfTraingle</button>
+    </div>
+  </body>
+
+
+</html>

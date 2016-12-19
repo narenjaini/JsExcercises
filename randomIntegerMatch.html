@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset=utf-8 />
+<title>A Program to random number match</title>
+<script>
+var checkurLuck = function(){
+    var randomNo = Math.floor((Math.random()*100)+1);
+    var enteredNo = prompt("enter a number");
+
+    if(randomNo === enteredNo){
+      document.getElementById("output").innerHTML = "Wow You Are Lucky."
+    }else{
+      document.getElementById("output").innerHTML = "Sorry! No Luck this time. Please, try again...."
+    }
+}
+</script>
+</head>
+<body>
+  <p> Do you want to check your luck then hit the button <button id="check" onclick="checkurLuck()"> Check </button></p>
+  <p id="output"></p>
+</body>
+</html>

@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset=utf-8 />
+<title>Js Excercise</title>
+<script>
+
+  var convert = function(a,b){
+    var c = document.getElementById("deg").value;
+//[ Formula : c/5 = (f-32)/9 [ where c = temperature in celsius and f = temperature in fahrenheit ]
+    var resultFaren = ((c/5)*9) + 32;
+
+    document.getElementById("result").innerHTML = resultFaren;
+  }
+
+
+</script>
+</head>
+<body>
+  Enter temp in celsius:&nbsp;<input id="deg" type="text" maxlength="10" />
+
+  <button id="convert" onclick="convert()">Convert</button>
+
+  <p>The result in fahrenheit is:&nbsp;<span id="result"></span></p>
+
+</body>
+</html>

@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset=utf-8 />
+<title>A Program to find Number of Days in b/w two dates</title>
+<script>
+  var daysDifference = function(){
+    var one_day=1000*60*60*24;
+
+    var date =  new Date(),
+        time = date.getTime(),
+        year = date.getFullYear();
+        millOne = date.getTime();
+
+    var dateSec =  new Date(),
+        nextYear = (year + 1),
+        yearSec = dateSec.setYear(parseInt(nextYear)),
+        millSec = dateSec.getTime();
+
+    var daysDifference = (millSec - millOne)/one_day;
+    console.log(daysDifference);
+
+  }
+</script>
+</head>
+<body>
+  <button id="result" onclick="daysDifference()">Number of Days</button>
+
+  <p></p>
+</body>
+</html>
