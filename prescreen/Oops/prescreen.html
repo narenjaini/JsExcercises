@@ -1,137 +1,45 @@
 <!DOCTYPE html>
-<html lang="en">
-  <head>
-      <meta charset="utf-8">
-      <title>JS Assessment</title>
+<html>
+<body>
 
-      <style>
-          body, div, p{
-              margin: 0; padding: 0;  border: 0; outline: 0; font-size: 100%;
-              vertical-align: baseline; background: transparent;
-          }
-          header{
-            width: 100%;
-            position: fixed;
-            padding: 10px;
-            background: #333333;
-            color: #ffffff;
-            font-size: 18px;
-            font-weight: bold;
-          }
-          .main-content{
-            text-align: center;
-          }
-          .preScreen, .palindrome{
-            position: relative;
-            display: inline-block;
-            float:left;
-            width: 50%;
-            margin-top: 120px;
-          }
+Address:<br>
+<textarea id="myTextarea">
+John: 10
+Jane: 3
+John: 5
+Nage: 8
+Jane: 4
+Jain: 6
+</textarea>
 
-          button{
-            background: #333333;
-            color: #ffffff;
-            padding: 5px 15px;
-            border-radius: 5px;
-            font-weight: bold;
-          }
-          p{
-            margin-top: 10px;
-          }
-          .success{
-            color: green;
-          }
-          .error{
-            color: red;
-          }
-      </style>
-  </head>
+<p>Click the button to alert the contents of the text area.</p>
 
-  <body>
-    <header>Js Assessment</header>
-    <div class="main-content">
-      <!-- Task 1 -->
-      <div class="preScreen">
-        <h2>Sum the count for each key</h2>
-        <textarea type="text" class="prescreen-input" rows="10" cols="25">
-          John : 2
-          Jane : 3
-          John : 4
-          Jane : 5
-        </textarea>
-        <div>
-          <button class="prescreen-button" onclick="totalCount()">TotalCount</button>
-          <p class="prescreen-output"></p>
-        </div>
-      </div>
+<button type="button" onclick="myFunction()">Try it</button>
 
-      <!-- Task 2 -->
-      <div class="palindrome">
-        <h2>Check the given input - isPalindrome or not</h2>
-        <input  id="userInput" type="text"/>
-        <button class="prescreen-button" onclick="isPalindrome()">Palindrome</button>
-        <p id="result"></p>
-      </div>
+<p id="demo"></p>
 
-    </div>
-
-    <script>
-/**********************************************Task1 *************************************************************/
-    function totalCount() {
-
-      var array = document.getElementsByClassName("prescreen-input")[0].value.split("\n"),//Splits the given input into array elements based on enter[newLine]
-          len = array.length-1,
-          newArray = [],
-          validatedArray = [],
-          result = "";
-
-          //To Split the each array element into subarrays based on colon symbol
-      for(var i=0; i<len; i++){
-         newArray.push(array[i].trim().split(":"));
-      }
-
-      for(var j=0; j<len; j++){
-          var sum = 0,
-              listedName = newArray[j][0];
-
-        if(validatedArray.indexOf(listedName) < 0) { // if condition to not to repeat the same check for the key
-          validatedArray.push(listedName);
-          for(var k=0; k<len; k++){
-              var tempName = newArray[k][0];
-              if(listedName == tempName){ //Check for the same Key to sumup the respective values
-                sum = sum + parseInt(newArray[k][1]);
-              }
-          }
-          result = result + "<p>"+ listedName  +":" + sum + "</p>";
+<script>
+  function myFunction() {
+      var x = document.getElementById("myTextarea").value,
+      y = x.split("\n"),
+      str = "",
+      data = {};
+      for(var i=0; i < y.length-1; i++) {
+        var splitdata = y[i].split(":");
+        if(data[splitdata[0]] != undefined) {
+                        data[splitdata[0]] = parseInt(data[splitdata[0]]) + parseInt(splitdata[1]);
+        } else {
+                        data[splitdata[0]] = splitdata[1];
         }
-        document.getElementsByClassName('prescreen-output')[0].innerHTML =  result;
-
       }
-
-    };
-
-
-/**********************************************Task2 *************************************************************/
-
-    function isPalindrome(){
-      var input = document.getElementById("userInput").value.toLowerCase().replace(/[^a-zA-Z]+/g,'');//takes the input, Changes into lower case and removes  all non-alphabets characters
-      input = input + ""; //Converts the input into string
-      var temp = input.split("").reverse().join(""); //methods to reverse the string
-      var output;
-      if(input !=""){ // check to avoid empty input
-        if(input == temp){
-            output = "<span class='success'>Yes!</span>" + "&nbsp;'" + input + "'&nbsp;" + "is a PALINDROME";
-        }else{
-            output = "<span class='error'>Sorry!</span>" + "&nbsp;'" + input + "'&nbsp;" + "is NOT a PALINDROME";
+      for (var key in data) {
+        if (data.hasOwnProperty(key)) {
+                      str += key + ":" + data[key]+"";
         }
-      }else{
-        output = "<p class='error'>Please enter some valid input and hit above button</p>";
       }
+      document.getElementById("demo").innerHTML = str;
+  }
+</script>
 
-      document.getElementById("result").innerHTML =  output;
-    }
-
-    </script>
-  </body>
+</body>
 </html>
